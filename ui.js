@@ -20,7 +20,7 @@ class UI {
                         <span class="badge badge-primary">Public Repos: ${
                           user.public_repos
                         }</span>
-                        <span class="badge badge-secondary">Public Gists: ${
+                        <span class="badge badge-danger">Public Gists: ${
                           user.public_gists
                         }</span>
                         <span class="badge badge-success">Followers: ${
@@ -46,8 +46,36 @@ class UI {
                 </div>
             </div>
         </div>
+        <br>
         <h3 class="page-heading mb-3">Latest Repos</h3>
         <div id="repos"></div>
     `;
+  }
+
+  showAlert(msg, className) {
+    this.clearAlert();
+
+    const body = document.querySelector('.searchContainer');
+    const card = document.querySelector('.search');
+
+    const alert = document.createElement('div');
+    alert.className = className;
+    alert.appendChild(document.createTextNode(msg));
+
+    body.insertBefore(alert, card);
+
+    setTimeout(() => {
+      this.clearAlert();
+    }, 3000);
+  }
+
+  clearAlert() {
+    const curr = document.querySelector('.alert');
+
+    if (curr) curr.remove();
+  }
+
+  clearProfile() {
+    this.profile.innerHTML = '';
   }
 }
